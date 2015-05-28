@@ -26,12 +26,14 @@ public class RecyclerViewAdapter extends BGARecyclerViewAdapter<NormalModel> {
         swipeItemLayout.setDelegate(new BGASwipeItemLayout.BGASwipeItemLayoutDelegate() {
             @Override
             public void onBGASwipeItemLayoutOpened(BGASwipeItemLayout swipeItemLayout) {
+                // 有新的item打开是，关闭之前处于打开状态的item
                 closeOpenedSwipeItemLayoutWithAnim();
                 mOpenedSil = swipeItemLayout;
             }
 
             @Override
             public void onBGASwipeItemLayoutClosed(BGASwipeItemLayout swipeItemLayout) {
+                // item关闭时，清空已打开的item
                 mOpenedSil = null;
             }
         });
