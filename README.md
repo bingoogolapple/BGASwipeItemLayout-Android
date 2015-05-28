@@ -1,4 +1,5 @@
 :running:BGASwipeItemLayout-Android v1.0.0:running:
+============
 带弹簧效果的左右滑动控件、作为ListView和RecyclerView的Item左右滑动过程中不会触发长按和点击事件。（作为AdapterView的item时的点击事件参考https://github.com/daimajia/AndroidSwipeLayout）
 
 #### 效果图
