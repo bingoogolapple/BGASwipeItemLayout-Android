@@ -1,0 +1,80 @@
+package cn.bingoogolapple.swipeitemlayout.demo.activity;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.List;
+
+import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
+import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildLongClickListener;
+import cn.bingoogolapple.swipeitemlayout.demo.R;
+import cn.bingoogolapple.swipeitemlayout.demo.adapter.AdapterViewAdapter;
+import cn.bingoogolapple.swipeitemlayout.demo.engine.DataEngine;
+import cn.bingoogolapple.swipeitemlayout.demo.model.NormalModel;
+
+/**
+ * 作者:王浩 邮件:bingoogolapple@gmail.com
+ * 创建时间:15/5/22 10:06
+ * 描述:
+ */
+public class ListViewDemoActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, BGAOnItemChildClickListener, BGAOnItemChildLongClickListener {
+    private static final String TAG = ListViewDemoActivity.class.getSimpleName();
+    private List<NormalModel> mDatas;
+    private ListView mDataLv;
+    private AdapterViewAdapter mAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_listview);
+
+        initListView();
+    }
+
+    private void initListView() {
+        mDataLv = (ListView) findViewById(R.id.lv_listview_data);
+        mDataLv.setOnItemClickListener(this);
+        mDataLv.setOnItemLongClickListener(this);
+
+        mAdapter = new AdapterViewAdapter(this);
+        mAdapter.setOnItemChildClickListener(this);
+        mAdapter.setOnItemChildLongClickListener(this);
+
+        mDatas = DataEngine.loadNormalModelDatas();
+        mAdapter.setDatas(mDatas);
+        mDataLv.setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(this, "点击了条目 " + mAdapter.getItem(position).mTitle, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(this, "长按了" + mAdapter.getItem(position).mTitle, Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+    @Override
+    public void onItemChildClick(View v, int position) {
+        if (v.getId() == R.id.tv_item_bgaswipe_delete) {
+            mAdapter.closeOpenedSwipeItemLayoutWithAnim();
+            mAdapter.removeItem(position);
+        }
+    }
+
+    @Override
+    public boolean onItemChildLongClick(View v, int position) {
+        if (v.getId() == R.id.tv_item_bgaswipe_delete) {
+            Toast.makeText(this, "长按了删除 " + mAdapter.getItem(position).mTitle, Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
+
+}

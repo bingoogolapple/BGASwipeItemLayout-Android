@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <Button
+        style="@style/MainBtn"
+        android:onClick="changeToSwipeItemDemo"
+        android:text="测试拖动和事件传递" />
+
+    <Button
+        style="@style/MainBtn"
+        android:onClick="changeToListViewDemo"
+        android:text="ListView示例" />
+
+    <Button
+        style="@style/MainBtn"
+        android:onClick="changeToRecyclerViewDemo"
+        android:text="RecyclerView示例" />
+
+</LinearLayout>
