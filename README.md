@@ -5,7 +5,7 @@
 
 写这个控件的初衷：产品经理要求在列表中的item展开时的EditText中编辑并提交，最开始是使用代码家的AndroidSwipeLayout+ListView实现的，
 但是在魅族3和魅族4上运行时，ListView中的EditText没法弹出键盘，所以就换成了代码家的AndroidSwipeLayout+RecyclerView实现，但是左右滑动
-过程中会触发点击和长按item事件，然后就有了这个滑动控件
+过程中会触发点击和长按item事件，然后单身:dog:从520那天就开始搞这个控件了:joy:
 
 #### 效果图
 ![Image of 测试各种事件](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/1-event.gif)
