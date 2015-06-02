@@ -1,6 +1,9 @@
 package cn.bingoogolapple.swipeitemlayout.demo.adapter;
 
 import android.content.Context;
+import android.view.View;
+import android.view.ViewParent;
+import android.widget.ListView;
 
 import cn.bingoogolapple.androidcommon.adapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
@@ -19,7 +22,7 @@ public class AdapterViewAdapter extends BGAAdapterViewAdapter<NormalModel> {
      * 当前处于打开状态的item
      */
     private BGASwipeItemLayout mOpenedSil;
-    
+
     public AdapterViewAdapter(Context context) {
         super(context, R.layout.item_bgaswipe);
     }
@@ -30,15 +33,25 @@ public class AdapterViewAdapter extends BGAAdapterViewAdapter<NormalModel> {
         swipeItemLayout.setDelegate(new BGASwipeItemLayout.BGASwipeItemLayoutDelegate() {
             @Override
             public void onBGASwipeItemLayoutOpened(BGASwipeItemLayout swipeItemLayout) {
-                // 有新的item打开是，关闭之前处于打开状态的item
-                closeOpenedSwipeItemLayoutWithAnim();
+                ViewParent parent = swipeItemLayout.getParent();
+                if (parent != null && parent instanceof ListView) {
+                    ListView listView = (ListView) parent;
+                    BGASwipeItemLayout item;
+                    for (int i = 0; i < listView.getChildCount(); i++) {
+                        View view = listView.getChildAt(i);
+                        if (view instanceof BGASwipeItemLayout && view != swipeItemLayout) {
+                            item = (BGASwipeItemLayout) view;
+                            if (!item.isClosed()) {
+                                item.closeWithAnim();
+                            }
+                        }
+                    }
+                }
                 mOpenedSil = swipeItemLayout;
             }
 
             @Override
             public void onBGASwipeItemLayoutClosed(BGASwipeItemLayout swipeItemLayout) {
-                // item关闭时，清空已打开的item
-                mOpenedSil = null;
             }
         });
         viewHolderHelper.setItemChildClickListener(R.id.tv_item_bgaswipe_delete);
@@ -52,9 +65,8 @@ public class AdapterViewAdapter extends BGAAdapterViewAdapter<NormalModel> {
     }
 
     public void closeOpenedSwipeItemLayoutWithAnim() {
-        if (mOpenedSil != null) {
+        if (mOpenedSil != null && mOpenedSil.isOpened()) {
             mOpenedSil.closeWithAnim();
-            mOpenedSil = null;
         }
     }
 }
