@@ -1,7 +1,7 @@
 :running:BGASwipeItemLayout-Android v1.0.0:running:
 ============
 带弹簧效果的左右滑动控件、作为ListView和RecyclerView的Item左右滑动过程中不会触发长按和点击事件。
-（作为AdapterView的item时的点击事件参考https://github.com/daimajia/AndroidSwipeLayout）
+（ 作为AdapterView的item时的点击事件参考https://github.com/daimajia/AndroidSwipeLayout ）
 
 写这个控件的初衷：产品经理要求在列表中的item展开时的EditText中编辑并提交，最开始是使用代码家的AndroidSwipeLayout+ListView实现的，
 但是在魅族3和魅族4上运行时，ListView中的EditText没法弹出键盘，所以就换成了代码家的AndroidSwipeLayout+RecyclerView实现，但是左右滑动
