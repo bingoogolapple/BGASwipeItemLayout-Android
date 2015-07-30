@@ -1,9 +1,9 @@
 package cn.bingoogolapple.swipeitemlayout.demo.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.view.ViewParent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
 import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
@@ -17,7 +17,10 @@ import cn.bingoogolapple.swipeitemlayout.demo.model.NormalModel;
  * 描述:
  */
 public class RecyclerViewAdapter extends BGARecyclerViewAdapter<NormalModel> {
-    private BGASwipeItemLayout mOpenedSil;
+    /**
+     * 当前处于打开状态的item
+     */
+    private List<BGASwipeItemLayout> mOpenedSil = new ArrayList<>();
 
     public RecyclerViewAdapter(Context context) {
         super(context, R.layout.item_bgaswipe);
@@ -29,25 +32,18 @@ public class RecyclerViewAdapter extends BGARecyclerViewAdapter<NormalModel> {
         swipeItemLayout.setDelegate(new BGASwipeItemLayout.BGASwipeItemLayoutDelegate() {
             @Override
             public void onBGASwipeItemLayoutOpened(BGASwipeItemLayout swipeItemLayout) {
-                ViewParent parent = swipeItemLayout.getParent();
-                if (parent != null && parent instanceof RecyclerView) {
-                    RecyclerView recyclerView = (RecyclerView) parent;
-                    BGASwipeItemLayout item;
-                    for (int i = 0; i < recyclerView.getChildCount(); i++) {
-                        View view = recyclerView.getChildAt(i);
-                        if (view instanceof BGASwipeItemLayout && view != swipeItemLayout) {
-                            item = (BGASwipeItemLayout) view;
-                            if (!item.isClosed()) {
-                                item.closeWithAnim();
-                            }
-                        }
-                    }
-                }
-                mOpenedSil = swipeItemLayout;
+                closeOpenedSwipeItemLayoutWithAnim();
+                mOpenedSil.add(swipeItemLayout);
             }
 
             @Override
             public void onBGASwipeItemLayoutClosed(BGASwipeItemLayout swipeItemLayout) {
+                mOpenedSil.remove(swipeItemLayout);
+            }
+
+            @Override
+            public void onBGASwipeItemLayoutStartOpen(BGASwipeItemLayout swipeItemLayout) {
+                closeOpenedSwipeItemLayoutWithAnim();
             }
         });
         viewHolderHelper.setItemChildClickListener(R.id.tv_item_bgaswipe_delete);
@@ -56,13 +52,13 @@ public class RecyclerViewAdapter extends BGARecyclerViewAdapter<NormalModel> {
 
     @Override
     public void fillData(BGAViewHolderHelper viewHolderHelper, int position, NormalModel model) {
-        closeOpenedSwipeItemLayoutWithAnim();
         viewHolderHelper.setText(R.id.tv_item_bgaswipe_title, model.mTitle).setText(R.id.tv_item_bgaswipe_detail, model.mDetail).setText(R.id.et_item_bgaswipe_title, model.mTitle);
     }
 
     public void closeOpenedSwipeItemLayoutWithAnim() {
-        if (mOpenedSil != null && mOpenedSil.isOpened()) {
-            mOpenedSil.closeWithAnim();
+        for (BGASwipeItemLayout sil : mOpenedSil) {
+            sil.closeWithAnim();
         }
+        mOpenedSil.clear();
     }
 }

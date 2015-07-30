@@ -42,6 +42,11 @@ public class SwipeItemActivity extends AppCompatActivity {
                 Toast.makeText(SwipeItemActivity.this, "关闭", Toast.LENGTH_SHORT).show();
             }
 
+            @Override
+            public void onBGASwipeItemLayoutStartOpen(BGASwipeItemLayout swipeItemLayout) {
+                Toast.makeText(SwipeItemActivity.this, "开始打开", Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
 

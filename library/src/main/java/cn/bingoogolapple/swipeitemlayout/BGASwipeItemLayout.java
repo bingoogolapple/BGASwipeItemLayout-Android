@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 /**
  * 作者:王浩 邮件:bingoogolapple@gmail.com
  * 创建时间:15/5/26 上午2:07
- * 描述:适用于AdapterView和RecyclerView的水平方向滑动item。【AdapterView的item单击和长按参考代码家https://github.com/daimajia/AndroidSwipeLayout】
+ * 描述:适用于AbsListView和RecyclerView的水平方向滑动item。【作为AbsListView的item单击和长按参考代码家的https://github.com/daimajia/AndroidSwipeLayout】
  */
 public class BGASwipeItemLayout extends RelativeLayout {
     private static final String TAG = BGASwipeItemLayout.class.getSimpleName();
@@ -99,7 +99,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
             // 弹簧距离，不能小于0，默认值为0
             mSpringDistance = typedArray.getDimensionPixelSize(attr, mSpringDistance);
             if (mSpringDistance < 0) {
-                throw new RuntimeException("bga_sil_springDistance不能小于0");
+                throw new IllegalStateException("bga_sil_springDistance不能小于0");
             }
         }
     }
@@ -116,8 +116,9 @@ public class BGASwipeItemLayout extends RelativeLayout {
 
     @Override
     protected void onFinishInflate() {
+        super.onFinishInflate();
         if (getChildCount() != 2) {
-            throw new RuntimeException(BGASwipeItemLayout.class.getSimpleName() + "必须有且只有两个子控件");
+            throw new IllegalStateException(BGASwipeItemLayout.class.getSimpleName() + "必须有且只有两个子控件");
         }
         mTopView = getChildAt(1);
         mBottomView = getChildAt(0);
@@ -144,7 +145,6 @@ public class BGASwipeItemLayout extends RelativeLayout {
         return mDragHelper.shouldInterceptTouchEvent(ev) && mGestureDetectorCompat.onTouchEvent(ev);
     }
 
-    // -----------------------------------参考代码家AndroidSwipeLayout开始---------------------------------------------
     @Override
     public void setOnClickListener(OnClickListener l) {
         super.setOnClickListener(l);
@@ -232,7 +232,6 @@ public class BGASwipeItemLayout extends RelativeLayout {
         }
         return null;
     }
-    // -----------------------------------参考代码家AndroidSwipeLayout结束---------------------------------------------
 
     private void requestParentDisallowInterceptTouchEvent() {
         ViewParent parent = getParent();
@@ -376,26 +375,66 @@ public class BGASwipeItemLayout extends RelativeLayout {
         mTopView.layout(mTopLeft, topTop, topRight, topBottom);
     }
 
+    /**
+     * 以动画方式打开
+     */
     public void openWithAnim() {
         smoothSlideTo(1);
     }
 
+    /**
+     * 以动画方式关闭
+     */
     public void closeWithAnim() {
         smoothSlideTo(0);
     }
 
+    /**
+     * 直接打开
+     */
     public void open() {
         slideTo(1);
     }
 
+    /**
+     * 直接关闭。如果在AbsListView中删除已经打开的item时，请用该方法关闭item，否则重用item时有问题。RecyclerView中可以用该方法，也可以用closeWithAnim
+     */
     public void close() {
         slideTo(0);
     }
 
+    /**
+     * 当前是否为打开状态
+     *
+     * @return
+     */
+    public boolean isOpened() {
+        return (mCurrentStatus == Status.Opened) || (mCurrentStatus == Status.Moving && mPreStatus == Status.Opened);
+    }
+
+    /**
+     * 当前是否为关闭状态
+     *
+     * @return
+     */
+    public boolean isClosed() {
+        return mCurrentStatus == Status.Closed || (mCurrentStatus == Status.Moving && mPreStatus == Status.Closed);
+    }
+
+    /**
+     * 获取顶部视图
+     *
+     * @return
+     */
     public View getTopView() {
         return mTopView;
     }
 
+    /**
+     * 获取底部视图
+     *
+     * @return
+     */
     public View getBottomView() {
         return mBottomView;
     }
@@ -421,9 +460,15 @@ public class BGASwipeItemLayout extends RelativeLayout {
             mBottomView.setVisibility(VISIBLE);
             ViewCompat.setAlpha(mBottomView, 1.0f);
             mCurrentStatus = Status.Opened;
+            if (mDelegate != null) {
+                mDelegate.onBGASwipeItemLayoutOpened(this);
+            }
         } else {
             mBottomView.setVisibility(INVISIBLE);
             mCurrentStatus = Status.Closed;
+            if (mDelegate != null) {
+                mDelegate.onBGASwipeItemLayoutClosed(this);
+            }
         }
         mPreStatus = mCurrentStatus;
         mTopLeft = getCloseOrOpenTopViewFinalLeft(isOpen);
@@ -438,14 +483,6 @@ public class BGASwipeItemLayout extends RelativeLayout {
             left = left + isOpen * mDragRange;
         }
         return left;
-    }
-
-    public boolean isOpened() {
-        return (mCurrentStatus == Status.Opened) || (mCurrentStatus == Status.Moving && mPreStatus == Status.Opened);
-    }
-
-    public boolean isClosed() {
-        return mCurrentStatus == Status.Closed || (mCurrentStatus == Status.Moving && mPreStatus == Status.Closed);
     }
 
     @Override
@@ -472,8 +509,6 @@ public class BGASwipeItemLayout extends RelativeLayout {
     }
 
     private ViewDragHelper.Callback mDragHelperCallback = new ViewDragHelper.Callback() {
-        // 在响应打开和关闭结束时，是否要通知代理（只有是手动拖动打开和关闭时才通知代理）
-        private boolean mIsNeedNotify = false;
 
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
@@ -543,6 +578,11 @@ public class BGASwipeItemLayout extends RelativeLayout {
             float alpha = 0.1f + 0.9f * mDragRatio;
             ViewCompat.setAlpha(mBottomView, alpha);
 
+            dispatchSwipeEvent();
+
+            // 兼容低版本
+            invalidate();
+
             requestLayout();
         }
 
@@ -571,45 +611,57 @@ public class BGASwipeItemLayout extends RelativeLayout {
             ViewCompat.postInvalidateOnAnimation(BGASwipeItemLayout.this);
         }
 
-        /**
-         * 当拖拽状态改变时回调
-         *
-         * @params 新的状态
-         */
-        @Override
-        public void onViewDragStateChanged(int state) {
-            switch (state) {
-                // 步骤1：开始拖动
-                case ViewDragHelper.STATE_DRAGGING:
-                    mBottomView.setVisibility(VISIBLE);
-                    mCurrentStatus = Status.Moving;
-                    mIsNeedNotify = true;
-                    break;
-                // 步骤2：fling松开手或者直接设置视图到某个位置
-                case ViewDragHelper.STATE_SETTLING:
-                    mBottomView.setVisibility(VISIBLE);
-                    mCurrentStatus = Status.Moving;
-                    break;
-                // 步骤3：视图完成移动到步骤2中设置的位置，并停止移动
-                case ViewDragHelper.STATE_IDLE:
-                    if (mTopView.getLeft() == getPaddingLeft() + mTopLp.leftMargin) {
-                        mBottomView.setVisibility(INVISIBLE);
-                        mCurrentStatus = Status.Closed;
-                        if (mIsNeedNotify && mDelegate != null && mPreStatus != mCurrentStatus) {
-                            mDelegate.onBGASwipeItemLayoutClosed(BGASwipeItemLayout.this);
-                        }
-                    } else {
-                        mCurrentStatus = Status.Opened;
-                        if (mIsNeedNotify && mDelegate != null && mPreStatus != mCurrentStatus) {
-                            mDelegate.onBGASwipeItemLayoutOpened(BGASwipeItemLayout.this);
-                        }
-                    }
-                    mPreStatus = mCurrentStatus;
-                    mIsNeedNotify = false;
-                    break;
+    };
+
+    private void dispatchSwipeEvent() {
+        Status preStatus = mCurrentStatus;
+        updateCurrentStatus();
+        if (mCurrentStatus != preStatus) {
+            if (mCurrentStatus == Status.Closed) {
+                mBottomView.setVisibility(INVISIBLE);
+                if (mDelegate != null && mPreStatus != mCurrentStatus) {
+                    mDelegate.onBGASwipeItemLayoutClosed(this);
+                }
+                mPreStatus = Status.Closed;
+            }
+            if (mCurrentStatus == Status.Opened) {
+                if (mDelegate != null && mPreStatus != mCurrentStatus) {
+                    mDelegate.onBGASwipeItemLayoutOpened(this);
+                }
+                mPreStatus = Status.Opened;
+            } else if (mPreStatus == Status.Closed) {
+                mBottomView.setVisibility(VISIBLE);
+                if (mDelegate != null) {
+                    mDelegate.onBGASwipeItemLayoutStartOpen(this);
+                }
             }
         }
-    };
+    }
+
+    private void updateCurrentStatus() {
+        if (mSwipeDirection == SwipeDirection.Left) {
+            // 向左滑动
+
+            if (mTopLeft == getPaddingLeft() + mTopLp.leftMargin - mDragRange) {
+                mCurrentStatus = Status.Opened;
+            } else if (mTopLeft == getPaddingLeft() + mTopLp.leftMargin) {
+                mCurrentStatus = Status.Closed;
+            } else {
+                mCurrentStatus = Status.Moving;
+            }
+        } else {
+            // 向右滑动
+
+            if (mTopLeft == getPaddingLeft() + mTopLp.leftMargin + mDragRange) {
+                mCurrentStatus = Status.Opened;
+            } else if (mTopLeft == getPaddingLeft() + mTopLp.leftMargin) {
+                mCurrentStatus = Status.Closed;
+            } else {
+                mCurrentStatus = Status.Moving;
+            }
+        }
+    }
+
 
     public enum SwipeDirection {
         Left, Right
@@ -624,9 +676,26 @@ public class BGASwipeItemLayout extends RelativeLayout {
     }
 
     public interface BGASwipeItemLayoutDelegate {
+        /**
+         * 变为打开状态
+         *
+         * @param swipeItemLayout
+         */
         void onBGASwipeItemLayoutOpened(BGASwipeItemLayout swipeItemLayout);
 
+        /**
+         * 变为关闭状态
+         *
+         * @param swipeItemLayout
+         */
         void onBGASwipeItemLayoutClosed(BGASwipeItemLayout swipeItemLayout);
+
+        /**
+         * 从关闭状态切换到正在打开状态
+         *
+         * @param swipeItemLayout
+         */
+        void onBGASwipeItemLayoutStartOpen(BGASwipeItemLayout swipeItemLayout);
     }
 
 }
