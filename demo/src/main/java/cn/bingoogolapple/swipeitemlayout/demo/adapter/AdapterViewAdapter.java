@@ -61,4 +61,11 @@ public class AdapterViewAdapter extends BGAAdapterViewAdapter<NormalModel> {
         }
         mOpenedSil.clear();
     }
+
+    public void closeOpenedSwipeItemLayout() {
+        for (BGASwipeItemLayout sil : mOpenedSil) {
+            sil.close();
+        }
+        mOpenedSil.clear();
+    }
 }

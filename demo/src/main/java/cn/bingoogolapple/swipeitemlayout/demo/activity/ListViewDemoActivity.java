@@ -78,7 +78,7 @@ public class ListViewDemoActivity extends AppCompatActivity implements AdapterVi
     public void onItemChildClick(View v, int position) {
         if (v.getId() == R.id.tv_item_bgaswipe_delete) {
             // 作为ListView的item使用时，如果删除了某一个item，请先关闭已经打开的item，否则其他item会显示不正常（RecyclerView不会有这个问题）
-            mAdapter.closeOpenedSwipeItemLayoutWithAnim();
+            mAdapter.closeOpenedSwipeItemLayout();
             mAdapter.removeItem(position);
         }
     }

@@ -54,8 +54,10 @@ public class RecyclerViewDemoActivity extends AppCompatActivity implements BGAOn
 
         mDataRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                mAdapter.closeOpenedSwipeItemLayoutWithAnim();
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (RecyclerView.SCROLL_STATE_DRAGGING == newState) {
+                    mAdapter.closeOpenedSwipeItemLayoutWithAnim();
+                }
             }
         });
 

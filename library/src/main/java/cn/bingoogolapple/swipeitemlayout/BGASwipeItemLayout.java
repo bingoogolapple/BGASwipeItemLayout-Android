@@ -99,7 +99,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
             // 弹簧距离，不能小于0，默认值为0
             mSpringDistance = typedArray.getDimensionPixelSize(attr, mSpringDistance);
             if (mSpringDistance < 0) {
-                throw new RuntimeException("bga_sil_springDistance不能小于0");
+                throw new IllegalStateException("bga_sil_springDistance不能小于0");
             }
         }
     }
@@ -118,7 +118,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         if (getChildCount() != 2) {
-            throw new RuntimeException(BGASwipeItemLayout.class.getSimpleName() + "必须有且只有两个子控件");
+            throw new IllegalStateException(BGASwipeItemLayout.class.getSimpleName() + "必须有且只有两个子控件");
         }
         mTopView = getChildAt(1);
         mBottomView = getChildAt(0);
@@ -550,6 +550,9 @@ public class BGASwipeItemLayout extends RelativeLayout {
 
             dispatchSwipeEvent();
 
+            // 兼容低版本
+            invalidate();
+
             requestLayout();
         }
 
@@ -596,7 +599,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
                     mDelegate.onBGASwipeItemLayoutOpened(this);
                 }
                 mPreStatus = Status.Opened;
-            } else if (preStatus == Status.Closed) {
+            } else if (mPreStatus == Status.Closed) {
                 mBottomView.setVisibility(VISIBLE);
                 if (mDelegate != null) {
                     mDelegate.onBGASwipeItemLayoutStartOpen(this);
