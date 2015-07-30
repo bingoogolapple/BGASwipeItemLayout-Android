@@ -377,26 +377,66 @@ public class BGASwipeItemLayout extends RelativeLayout {
         mTopView.layout(mTopLeft, topTop, topRight, topBottom);
     }
 
+    /**
+     * 以动画方式打开
+     */
     public void openWithAnim() {
         smoothSlideTo(1);
     }
 
+    /**
+     * 以动画方式关闭
+     */
     public void closeWithAnim() {
         smoothSlideTo(0);
     }
 
+    /**
+     * 直接打开
+     */
     public void open() {
         slideTo(1);
     }
 
+    /**
+     * 直接关闭。如果在AbsListView中删除已经打开的item时，请用该方法关闭item，否则重用item时有问题。RecyclerView中可以用该方法，也可以用closeWithAnim
+     */
     public void close() {
         slideTo(0);
     }
 
+    /**
+     * 当前是否为打开状态
+     *
+     * @return
+     */
+    public boolean isOpened() {
+        return (mCurrentStatus == Status.Opened) || (mCurrentStatus == Status.Moving && mPreStatus == Status.Opened);
+    }
+
+    /**
+     * 当前是否为关闭状态
+     *
+     * @return
+     */
+    public boolean isClosed() {
+        return mCurrentStatus == Status.Closed || (mCurrentStatus == Status.Moving && mPreStatus == Status.Closed);
+    }
+
+    /**
+     * 获取顶部视图
+     *
+     * @return
+     */
     public View getTopView() {
         return mTopView;
     }
 
+    /**
+     * 获取底部视图
+     *
+     * @return
+     */
     public View getBottomView() {
         return mBottomView;
     }
@@ -445,14 +485,6 @@ public class BGASwipeItemLayout extends RelativeLayout {
             left = left + isOpen * mDragRange;
         }
         return left;
-    }
-
-    public boolean isOpened() {
-        return (mCurrentStatus == Status.Opened) || (mCurrentStatus == Status.Moving && mPreStatus == Status.Opened);
-    }
-
-    public boolean isClosed() {
-        return mCurrentStatus == Status.Closed || (mCurrentStatus == Status.Moving && mPreStatus == Status.Closed);
     }
 
     @Override
@@ -646,10 +678,25 @@ public class BGASwipeItemLayout extends RelativeLayout {
     }
 
     public interface BGASwipeItemLayoutDelegate {
+        /**
+         * 变为打开状态
+         *
+         * @param swipeItemLayout
+         */
         void onBGASwipeItemLayoutOpened(BGASwipeItemLayout swipeItemLayout);
 
+        /**
+         * 变为关闭状态
+         *
+         * @param swipeItemLayout
+         */
         void onBGASwipeItemLayoutClosed(BGASwipeItemLayout swipeItemLayout);
 
+        /**
+         * 从关闭状态切换到正在打开状态
+         *
+         * @param swipeItemLayout
+         */
         void onBGASwipeItemLayoutStartOpen(BGASwipeItemLayout swipeItemLayout);
     }
 
