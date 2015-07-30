@@ -5,7 +5,7 @@
 >关于我<br/>
 >微博：<a href="http://weibo.com/bingoogol" target="_blank">bingoogolapple</a>&nbsp;&nbsp;&nbsp;&nbsp;主页：<a  href="http://www.bingoogolapple.cn" target="_blank">bingoogolapple.cn</a>&nbsp;&nbsp;&nbsp;&nbsp;邮箱：<a href="mailto:bingoogolapple@gmail.com" target="_blank">bingoogolapple@gmail.com</a>
 
-类似iOS带弹簧效果的左右滑动控件
+类似iOS带弹簧效果的左右滑动控件，可作为AbsListView和RecyclerView的item。支持给BGASwipeItemLayout和其子控件设置margin和padding属性
 
 ### 效果图
 ![Image of 测试各种事件](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/1-event.gif)
@@ -20,7 +20,7 @@ dependencies {
 }
 ```
 
-### BGASwipeItemLayout接口说明
+### BGASwipeItemLayout方法说明
 
 ```java
 /**

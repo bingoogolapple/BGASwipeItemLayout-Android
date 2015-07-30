@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
 /**
  * 作者:王浩 邮件:bingoogolapple@gmail.com
  * 创建时间:15/5/26 上午2:07
- * 描述:适用于AdapterView和RecyclerView的水平方向滑动item。【AdapterView的item单击和长按参考代码家https://github.com/daimajia/AndroidSwipeLayout】
+ * 描述:适用于AbsListView和RecyclerView的水平方向滑动item。【作为AbsListView的item单击和长按参考代码家的https://github.com/daimajia/AndroidSwipeLayout】
  */
 public class BGASwipeItemLayout extends RelativeLayout {
     private static final String TAG = BGASwipeItemLayout.class.getSimpleName();
@@ -145,7 +145,6 @@ public class BGASwipeItemLayout extends RelativeLayout {
         return mDragHelper.shouldInterceptTouchEvent(ev) && mGestureDetectorCompat.onTouchEvent(ev);
     }
 
-    // -----------------------------------参考代码家AndroidSwipeLayout开始---------------------------------------------
     @Override
     public void setOnClickListener(OnClickListener l) {
         super.setOnClickListener(l);
@@ -233,7 +232,6 @@ public class BGASwipeItemLayout extends RelativeLayout {
         }
         return null;
     }
-    // -----------------------------------参考代码家AndroidSwipeLayout结束---------------------------------------------
 
     private void requestParentDisallowInterceptTouchEvent() {
         ViewParent parent = getParent();
