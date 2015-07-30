@@ -15,7 +15,7 @@ public class DataEngine {
     public static List<NormalModel> loadNormalModelDatas() {
         List<NormalModel> datas = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            datas.add(new NormalModel("title" + i, "detail" + i));
+            datas.add(new NormalModel("TitleTitleTitleTitleTitle" + i, "DetailDetailDetailDetailDetailDetailDetailDetail" + i));
         }
         return datas;
     }

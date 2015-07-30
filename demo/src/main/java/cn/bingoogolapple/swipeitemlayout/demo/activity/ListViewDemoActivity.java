@@ -3,6 +3,7 @@ package cn.bingoogolapple.swipeitemlayout.demo.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -43,6 +44,19 @@ public class ListViewDemoActivity extends AppCompatActivity implements AdapterVi
         mAdapter = new AdapterViewAdapter(this);
         mAdapter.setOnItemChildClickListener(this);
         mAdapter.setOnItemChildLongClickListener(this);
+
+        mDataLv.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL == scrollState) {
+                    mAdapter.closeOpenedSwipeItemLayoutWithAnim();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
 
         mDatas = DataEngine.loadNormalModelDatas();
         mAdapter.setDatas(mDatas);
