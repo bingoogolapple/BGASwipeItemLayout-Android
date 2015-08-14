@@ -243,7 +243,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
     private GestureDetector.SimpleOnGestureListener mSimpleOnGestureListener = new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            if (Math.abs(distanceX) > Math.abs(distanceY) || Math.abs(distanceY) > 15) {
+            if (Math.abs(distanceX) > Math.abs(distanceY)) {
                 requestParentDisallowInterceptTouchEvent();
                 return true;
             }
@@ -379,6 +379,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
      * 以动画方式打开
      */
     public void openWithAnim() {
+        mPreStatus = Status.Moving;
         smoothSlideTo(1);
     }
 
@@ -386,6 +387,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
      * 以动画方式关闭
      */
     public void closeWithAnim() {
+        mPreStatus = Status.Moving;
         smoothSlideTo(0);
     }
 
@@ -393,6 +395,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
      * 直接打开
      */
     public void open() {
+        mPreStatus = Status.Moving;
         slideTo(1);
     }
 
@@ -400,6 +403,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
      * 直接关闭。如果在AbsListView中删除已经打开的item时，请用该方法关闭item，否则重用item时有问题。RecyclerView中可以用该方法，也可以用closeWithAnim
      */
     public void close() {
+        mPreStatus = Status.Moving;
         slideTo(0);
     }
 
@@ -623,8 +627,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
                     mDelegate.onBGASwipeItemLayoutClosed(this);
                 }
                 mPreStatus = Status.Closed;
-            }
-            if (mCurrentStatus == Status.Opened) {
+            } else if (mCurrentStatus == Status.Opened) {
                 if (mDelegate != null && mPreStatus != mCurrentStatus) {
                     mDelegate.onBGASwipeItemLayoutOpened(this);
                 }

@@ -1,6 +1,6 @@
 package cn.bingoogolapple.swipeitemlayout.demo.adapter;
 
-import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ public class RecyclerViewAdapter extends BGARecyclerViewAdapter<NormalModel> {
      */
     private List<BGASwipeItemLayout> mOpenedSil = new ArrayList<>();
 
-    public RecyclerViewAdapter(Context context) {
-        super(context, R.layout.item_bgaswipe);
+    public RecyclerViewAdapter(RecyclerView recyclerView) {
+        super(recyclerView, R.layout.item_bgaswipe);
     }
 
     @Override
