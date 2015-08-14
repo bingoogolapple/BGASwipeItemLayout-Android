@@ -3,6 +3,7 @@ package cn.bingoogolapple.swipeitemlayout.demo.activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -41,7 +42,7 @@ public class ListViewDemoActivity extends AppCompatActivity implements AdapterVi
         mDataLv.setOnItemClickListener(this);
         mDataLv.setOnItemLongClickListener(this);
 
-        mAdapter = new AdapterViewAdapter(this);
+        mAdapter = new AdapterViewAdapter(mDataLv);
         mAdapter.setOnItemChildClickListener(this);
         mAdapter.setOnItemChildLongClickListener(this);
 
@@ -75,8 +76,8 @@ public class ListViewDemoActivity extends AppCompatActivity implements AdapterVi
     }
 
     @Override
-    public void onItemChildClick(View v, int position) {
-        if (v.getId() == R.id.tv_item_bgaswipe_delete) {
+    public void onItemChildClick(ViewGroup parent, View childView, int position) {
+        if (childView.getId() == R.id.tv_item_bgaswipe_delete) {
             // 作为ListView的item使用时，如果删除了某一个item，请先关闭已经打开的item，否则其他item会显示不正常（RecyclerView不会有这个问题）
             mAdapter.closeOpenedSwipeItemLayout();
             mAdapter.removeItem(position);
@@ -84,12 +85,11 @@ public class ListViewDemoActivity extends AppCompatActivity implements AdapterVi
     }
 
     @Override
-    public boolean onItemChildLongClick(View v, int position) {
-        if (v.getId() == R.id.tv_item_bgaswipe_delete) {
+    public boolean onItemChildLongClick(ViewGroup parent, View childView, int position) {
+        if (childView.getId() == R.id.tv_item_bgaswipe_delete) {
             Toast.makeText(this, "长按了删除 " + mAdapter.getItem(position).mTitle, Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
     }
-
 }
