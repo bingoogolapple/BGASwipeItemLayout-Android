@@ -1,6 +1,6 @@
 package cn.bingoogolapple.swipeitemlayout.demo.adapter;
 
-import android.widget.AbsListView;
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ public class AdapterViewAdapter extends BGAAdapterViewAdapter<NormalModel> {
      */
     private List<BGASwipeItemLayout> mOpenedSil = new ArrayList<>();
 
-    public AdapterViewAdapter(AbsListView absListView) {
-        super(absListView, R.layout.item_bgaswipe);
+    public AdapterViewAdapter(Context context) {
+        super(context, R.layout.item_bgaswipe);
     }
 
     @Override

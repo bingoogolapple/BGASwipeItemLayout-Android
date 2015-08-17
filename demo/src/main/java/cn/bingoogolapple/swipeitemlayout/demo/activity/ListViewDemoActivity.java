@@ -42,7 +42,7 @@ public class ListViewDemoActivity extends AppCompatActivity implements AdapterVi
         mDataLv.setOnItemClickListener(this);
         mDataLv.setOnItemLongClickListener(this);
 
-        mAdapter = new AdapterViewAdapter(mDataLv);
+        mAdapter = new AdapterViewAdapter(this);
         mAdapter.setOnItemChildClickListener(this);
         mAdapter.setOnItemChildLongClickListener(this);
 
