@@ -14,6 +14,7 @@
             android:layout_height="100dp"
             android:background="#38D369"
             android:padding="5dp"
+            app:bga_sil_swipeAble="false"
             app:bga_sil_bottomMode="pullOut"
             app:bga_sil_springDistance="20dp"
             app:bga_sil_swipeDirection="left">

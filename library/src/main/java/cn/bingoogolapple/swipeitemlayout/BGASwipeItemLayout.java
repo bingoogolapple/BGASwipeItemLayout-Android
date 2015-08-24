@@ -61,6 +61,8 @@ public class BGASwipeItemLayout extends RelativeLayout {
     private OnLongClickListener mOnLongClickListener;
     private OnClickListener mOnClickListener;
 
+    private boolean mSwipeable = true;
+
     public BGASwipeItemLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -101,6 +103,8 @@ public class BGASwipeItemLayout extends RelativeLayout {
             if (mSpringDistance < 0) {
                 throw new IllegalStateException("bga_sil_springDistance不能小于0");
             }
+        } else if (attr == R.styleable.BGASwipeItemLayout_bga_sil_swipeAble) {
+            mSwipeable = typedArray.getBoolean(attr, mSwipeable);
         }
     }
 
@@ -112,6 +116,10 @@ public class BGASwipeItemLayout extends RelativeLayout {
 
     public void setDelegate(BGASwipeItemLayoutDelegate delegate) {
         mDelegate = delegate;
+    }
+
+    public void setSwipeAble(boolean swipeAble) {
+        mSwipeable = swipeAble;
     }
 
     @Override
@@ -516,7 +524,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
 
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
-            return child == mTopView;
+            return mSwipeable && child == mTopView;
         }
 
         @Override

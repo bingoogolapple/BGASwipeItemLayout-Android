@@ -70,6 +70,13 @@ public View getTopView()
  * @return
  */
 public View getBottomView()
+
+/**
+ * 设置是否可滑动
+ *
+ * @return
+ */
+public void setSwipeAble(boolean swipeAble)
 ```
 
 ### BGASwipeItemLayoutDelegate接口说明
@@ -104,6 +111,7 @@ void onBGASwipeItemLayoutStartOpen(BGASwipeItemLayout swipeItemLayout);
 bga_sil_swipeDirection         | 往左滑还是往右滑为打开状态(left或right)        | left
 bga_sil_bottomMode         | 底部视图展现方式(layDown或pullOut)        | pullOut
 bga_sil_springDistance         | 弹簧距离        | 0dp
+bga_sil_swipeAble         | 是否可左右滑动        | true
 
 ### 代码是最好的老师，更多详细用法请查看[Demo](https://github.com/bingoogolapple/BGASwipeItemLayout-Android/tree/master/demo):feet:
 
