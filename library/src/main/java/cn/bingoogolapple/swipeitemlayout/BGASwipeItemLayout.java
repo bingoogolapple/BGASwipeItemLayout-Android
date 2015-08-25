@@ -60,7 +60,9 @@ public class BGASwipeItemLayout extends RelativeLayout {
     private GestureDetectorCompat mGestureDetectorCompat;
     private OnLongClickListener mOnLongClickListener;
     private OnClickListener mOnClickListener;
-
+    /**
+     * 是否可滑动
+     */
     private boolean mSwipeable = true;
 
     public BGASwipeItemLayout(Context context, AttributeSet attrs) {
@@ -282,6 +284,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
             // 1
             if (isClosed()) {
                 setPressed(true);
+                return true;
             }
             return false;
         }
@@ -299,12 +302,16 @@ public class BGASwipeItemLayout extends RelativeLayout {
         public boolean onDoubleTap(MotionEvent e) {
             if (isClosed()) {
                 setPressed(true);
+                return true;
             }
             return false;
         }
 
         public boolean onDoubleTapEvent(MotionEvent e) {
-            setPressed(false);
+            if (isClosed()) {
+                setPressed(false);
+                return true;
+            }
             return false;
         }
     };

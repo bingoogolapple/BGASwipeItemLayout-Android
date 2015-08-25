@@ -1,7 +1,6 @@
 :running:BGASwipeItemLayout-Android:running:
 ============
 
-[ ![Download](https://api.bintray.com/packages/bingoogolapple/maven/bga-swipeitemlayout/images/download.svg) ](https://bintray.com/bingoogolapple/maven/bga-swipeitemlayout/_latestVersion)
 >关于我<br/>
 >微博：<a href="http://weibo.com/bingoogol" target="_blank">bingoogolapple</a>&nbsp;&nbsp;&nbsp;&nbsp;主页：<a  href="http://www.bingoogolapple.cn" target="_blank">bingoogolapple.cn</a>&nbsp;&nbsp;&nbsp;&nbsp;邮箱：<a href="mailto:bingoogolapple@gmail.com" target="_blank">bingoogolapple@gmail.com</a>
 
@@ -12,7 +11,7 @@
 ![Image of ListViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/2-listview.gif)
 ![Image of RecyclerViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/3-recyclerview.gif)
 
-### Gradle依赖
+### Gradle依赖[ ![Download](https://api.bintray.com/packages/bingoogolapple/maven/bga-swipeitemlayout/images/download.svg) ](https://bintray.com/bingoogolapple/maven/bga-swipeitemlayout/_latestVersion)
 
 ```groovy
 dependencies {
