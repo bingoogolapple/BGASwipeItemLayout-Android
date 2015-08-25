@@ -1,7 +1,6 @@
 :running:BGASwipeItemLayout-Android:running:
 ============
 
-[ ![Download](https://api.bintray.com/packages/bingoogolapple/maven/bga-swipeitemlayout/images/download.svg) ](https://bintray.com/bingoogolapple/maven/bga-swipeitemlayout/_latestVersion)
 >关于我<br/>
 >微博：<a href="http://weibo.com/bingoogol" target="_blank">bingoogolapple</a>&nbsp;&nbsp;&nbsp;&nbsp;主页：<a  href="http://www.bingoogolapple.cn" target="_blank">bingoogolapple.cn</a>&nbsp;&nbsp;&nbsp;&nbsp;邮箱：<a href="mailto:bingoogolapple@gmail.com" target="_blank">bingoogolapple@gmail.com</a>
 
@@ -12,7 +11,7 @@
 ![Image of ListViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/2-listview.gif)
 ![Image of RecyclerViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/3-recyclerview.gif)
 
-### Gradle依赖
+### Gradle依赖[ ![Download](https://api.bintray.com/packages/bingoogolapple/maven/bga-swipeitemlayout/images/download.svg) ](https://bintray.com/bingoogolapple/maven/bga-swipeitemlayout/_latestVersion)
 
 ```groovy
 dependencies {
@@ -70,6 +69,13 @@ public View getTopView()
  * @return
  */
 public View getBottomView()
+
+/**
+ * 设置是否可滑动
+ *
+ * @return
+ */
+public void setSwipeAble(boolean swipeAble)
 ```
 
 ### BGASwipeItemLayoutDelegate接口说明
@@ -104,6 +110,7 @@ void onBGASwipeItemLayoutStartOpen(BGASwipeItemLayout swipeItemLayout);
 bga_sil_swipeDirection         | 往左滑还是往右滑为打开状态(left或right)        | left
 bga_sil_bottomMode         | 底部视图展现方式(layDown或pullOut)        | pullOut
 bga_sil_springDistance         | 弹簧距离        | 0dp
+bga_sil_swipeAble         | 是否可左右滑动        | true
 
 ### 代码是最好的老师，更多详细用法请查看[Demo](https://github.com/bingoogolapple/BGASwipeItemLayout-Android/tree/master/demo):feet:
 

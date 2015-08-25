@@ -10,5 +10,6 @@
             <enum name="layDown" value="1" />
         </attr>
         <attr name="bga_sil_springDistance" format="dimension" />
+        <attr name="bga_sil_swipeAble" format="boolean" />
     </declare-styleable>
 </resources>
