@@ -10,8 +10,7 @@
     app:bga_sil_swipeDirection="left">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        style="@style/WrapMatch"
         android:background="@android:color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -23,8 +22,7 @@
 
         <TextView
             android:id="@+id/tv_item_bgaswipe_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            style="@style/WrapMatch"
             android:background="@drawable/selector_btn_red"
             android:clickable="true"
             android:gravity="center"
@@ -36,8 +34,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/MatchMatch"
         android:background="@drawable/selector_item"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -45,16 +42,14 @@
 
         <TextView
             android:id="@+id/tv_item_bgaswipe_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MatchWrap"
             android:text="标题"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_item_bgaswipe_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/MatchWrap"
             android:layout_marginTop="5dp"
             android:text="详细内容"
             android:textColor="@android:color/darker_gray"

@@ -1,27 +1,26 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+
+        <item name="android:windowBackground">@android:color/white</item>
     </style>
 
-    <style name="MainBtn">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="AppTheme" parent="AppBaseTheme"></style>
+
+    <style name="MainBtn" parent="MatchWrap">
         <item name="android:layout_marginTop">8dp</item>
-        <item name="android:background">@drawable/selector_btn_blue</item>
+        <item name="android:background">@drawable/selector_btn_orange</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
     </style>
 
-    <style name="SwipeItemBtn">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
+    <style name="SwipeItemBtn" parent="AutoWrap">
         <item name="android:onClick">onClick</item>
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">5dp</item>
-        <item name="android:background">@drawable/selector_btn_blue</item>
+        <item name="android:background">@drawable/selector_btn_orange</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
