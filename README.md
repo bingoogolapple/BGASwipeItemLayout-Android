@@ -1,9 +1,6 @@
 :running:BGASwipeItemLayout-Android:running:
 ============
 
->关于我<br/>
->微博：<a href="http://weibo.com/bingoogol" target="_blank">bingoogolapple</a>&nbsp;&nbsp;&nbsp;&nbsp;主页：<a  href="http://www.bingoogolapple.cn" target="_blank">bingoogolapple.cn</a>&nbsp;&nbsp;&nbsp;&nbsp;邮箱：<a href="mailto:bingoogolapple@gmail.com" target="_blank">bingoogolapple@gmail.com</a>
-
 类似iOS带弹簧效果的左右滑动控件，可作为AbsListView和RecyclerView的item。支持给BGASwipeItemLayout和其子控件设置margin和padding属性
 
 ### 效果图
@@ -11,7 +8,7 @@
 ![Image of ListViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/2-listview.gif)
 ![Image of RecyclerViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/3-recyclerview.gif)
 
-### Gradle依赖[ ![Download](https://api.bintray.com/packages/bingoogolapple/maven/bga-swipeitemlayout/images/download.svg) ](https://bintray.com/bingoogolapple/maven/bga-swipeitemlayout/_latestVersion)
+### Gradle依赖[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.bingoogolapple/bga-refreshlayout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.bingoogolapple/bga-refreshlayout)
 
 ```groovy
 dependencies {
@@ -112,7 +109,11 @@ bga_sil_bottomMode         | 底部视图展现方式(layDown或pullOut)        
 bga_sil_springDistance         | 弹簧距离        | 0dp
 bga_sil_swipeAble         | 是否可左右滑动        | true
 
-### 代码是最好的老师，更多详细用法请查看[Demo](https://github.com/bingoogolapple/BGASwipeItemLayout-Android/tree/master/demo):feet:
+### 关于我
+
+| 新浪微博 | 个人主页 | 邮箱 | BGA系列开源库QQ群 |
+| ------------ | ------------- | ------------ | ------------ |
+| <a href="http://weibo.com/bingoogol" target="_blank">bingoogolapple</a> | <a  href="http://www.bingoogolapple.cn" target="_blank">bingoogolapple.cn</a>  | <a href="mailto:bingoogolapple@gmail.com" target="_blank">bingoogolapple@gmail.com</a> | ![BGA_CODE_CLUB](http://7xk9dj.com1.z0.glb.clouddn.com/BGA_CODE_CLUB.png?imageView2/2/w/200) |
 
 ## License
 

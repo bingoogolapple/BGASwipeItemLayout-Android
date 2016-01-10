@@ -3,7 +3,6 @@
     style="@style/MatchMatch.Vertical"
     android:background="@android:color/white"
     android:gravity="center_vertical"
-    android:orientation="vertical"
     android:padding="10dp">
 
     <Button

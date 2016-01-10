@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewParent;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 import java.lang.reflect.Method;
 
@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
  * 创建时间:15/5/26 上午2:07
  * 描述:适用于AbsListView和RecyclerView的水平方向滑动item。【作为AbsListView的item单击和长按参考代码家的https://github.com/daimajia/AndroidSwipeLayout】
  */
-public class BGASwipeItemLayout extends RelativeLayout {
+public class BGASwipeItemLayout extends FrameLayout {
     private static final String TAG = BGASwipeItemLayout.class.getSimpleName();
     private static final String INSTANCE_STATUS = "instance_status";
     private static final String STATUS_OPEN_CLOSE = "status_open_close";
@@ -335,11 +335,11 @@ public class BGASwipeItemLayout extends RelativeLayout {
         mDragRange = mBottomView.getMeasuredWidth() + mBottomLp.leftMargin + mBottomLp.rightMargin;
 
         int topTop = getPaddingTop() + mTopLp.topMargin;
-        int topBottom = topTop + mTopView.getMeasuredHeight();
+        int topBottom = getMeasuredHeight() - getPaddingBottom() - mTopLp.bottomMargin;
         int topRight = mTopLeft + mTopView.getMeasuredWidth();
 
         int bottomTop = getPaddingTop() + mBottomLp.topMargin;
-        int bottomBottom = bottomTop + mBottomView.getMeasuredHeight();
+        int bottomBottom = getMeasuredHeight() - getPaddingBottom() - mBottomLp.bottomMargin;
         int bottomLeft;
         int bottomRight;
 
@@ -349,7 +349,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
             if (mBottomModel == BottomModel.LayDown) {
                 // 遮罩，位置固定不变（先计算right，然后根据right计算left）
 
-                bottomRight = r - getPaddingRight() - mBottomLp.rightMargin;
+                bottomRight = getMeasuredWidth() - getPaddingRight() - mBottomLp.rightMargin;
                 bottomLeft = bottomRight - mBottomView.getMeasuredWidth();
             } else {
                 // 拉出，位置随顶部视图的位置改变
@@ -358,7 +358,7 @@ public class BGASwipeItemLayout extends RelativeLayout {
                 bottomLeft = mTopLeft + mTopView.getMeasuredWidth() + mTopLp.rightMargin + mBottomLp.leftMargin;
 
                 // 底部视图的left被允许的最小值
-                int minBottomLeft = r - getPaddingRight() - mBottomView.getMeasuredWidth() - mBottomLp.rightMargin;
+                int minBottomLeft = getMeasuredWidth() - getPaddingRight() - mBottomView.getMeasuredWidth() - mBottomLp.rightMargin;
                 // 获取最终的left
                 bottomLeft = Math.max(bottomLeft, minBottomLeft);
                 // 根据left计算right

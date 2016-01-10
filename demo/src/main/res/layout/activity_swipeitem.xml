@@ -1,74 +1,37 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/MatchMatch">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <LinearLayout style="@style/MatchMatch.Vertical">
 
         <cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout
             android:id="@+id/sil_swipeitem_test"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="#38D369"
-            android:padding="5dp"
+            style="@style/SwipeItemSIL"
             app:bga_sil_bottomMode="pullOut"
             app:bga_sil_springDistance="20dp"
             app:bga_sil_swipeDirection="left">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:background="#FFFF0000"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="5dp">
+            <ImageView
+                android:id="@+id/iv_swipeitem_delete"
+                style="@style/BottomViewDelete"
+                android:onClick="onClick" />
 
-                <ImageView
-                    android:id="@+id/iv_swipeitem_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="onClick"
-                    android:orientation="vertical"
-                    android:src="@mipmap/delete" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:background="#9674FC"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
+            <LinearLayout style="@style/TopViewRoot">
 
                 <ImageView
                     android:id="@+id/iv_swipeitem_avator"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:onClick="onClick"
-                    android:src="@mipmap/avator" />
+                    style="@style/TopViewAvatar"
+                    android:onClick="onClick" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="测试Margin,Padding以及各种事件"
-                    android:textColor="@android:color/white" />
+                    style="@style/TopViewDesc"
+                    android:text="测试Margin,Padding以及各种事件" />
             </LinearLayout>
         </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
+            style="@style/MatchWrap.Horizontal"
+            android:layout_margin="5dp"
             android:padding="5dp">
 
             <Button
@@ -80,7 +43,6 @@
                 android:id="@+id/btn_swipeitem_close"
                 style="@style/SwipeItemBtn"
                 android:text="关" />
-
 
             <Button
                 android:id="@+id/btn_swipeitem_openwithanim"
@@ -100,40 +62,19 @@
 
         <cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout
             style="@style/SwipeItemSIL"
-            app:bga_sil_swipeAble="false"
             app:bga_sil_bottomMode="layDown"
             app:bga_sil_springDistance="20dp"
+            app:bga_sil_swipeAble="false"
             app:bga_sil_swipeDirection="left">
 
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:background="#FFFF0000"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp"
-                android:src="@mipmap/delete" />
+            <ImageView style="@style/BottomViewDelete" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
+            <LinearLayout style="@style/TopViewRoot">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:src="@mipmap/avator" />
+                <ImageView style="@style/TopViewAvatar" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    style="@style/TopViewDesc"
                     android:text="不可滑动" />
             </LinearLayout>
         </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
@@ -144,35 +85,14 @@
             app:bga_sil_springDistance="20dp"
             app:bga_sil_swipeDirection="left">
 
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp"
-                android:background="#FFFF0000"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp"
-                android:src="@mipmap/delete" />
+            <ImageView style="@style/BottomViewDelete" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
+            <LinearLayout style="@style/TopViewRoot">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:src="@mipmap/avator" />
+                <ImageView style="@style/TopViewAvatar" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    style="@style/TopViewDesc"
                     android:text="向左滑  ---+---  遮罩  ---+---  弹簧" />
             </LinearLayout>
         </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
@@ -183,45 +103,14 @@
             app:bga_sil_springDistance="20dp"
             app:bga_sil_swipeDirection="left">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#FFFF0000"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp">
+            <ImageView style="@style/BottomViewDelete" />
 
-                <EditText
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent" />
+            <LinearLayout style="@style/TopViewRoot">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/delete" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:src="@mipmap/avator" />
+                <ImageView style="@style/TopViewAvatar" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    style="@style/TopViewDesc"
                     android:text="向左滑  ---+---  拉出  ---+---  弹簧" />
             </LinearLayout>
         </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
@@ -232,41 +121,14 @@
             app:bga_sil_springDistance="20dp"
             app:bga_sil_swipeDirection="right">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#FFFF0000"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp">
+            <ImageView style="@style/BottomViewDelete" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/delete" />
-            </LinearLayout>
+            <LinearLayout style="@style/TopViewRoot">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:src="@mipmap/avator" />
+                <ImageView style="@style/TopViewAvatar" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    style="@style/TopViewDesc"
                     android:text="向右滑  ---+--- 遮罩  ---+---  弹簧" />
             </LinearLayout>
         </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
@@ -277,41 +139,14 @@
             app:bga_sil_springDistance="20dp"
             app:bga_sil_swipeDirection="right">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#FFFF0000"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp">
+            <ImageView style="@style/BottomViewDelete" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/delete" />
-            </LinearLayout>
+            <LinearLayout style="@style/TopViewRoot">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:src="@mipmap/avator" />
+                <ImageView style="@style/TopViewAvatar" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    style="@style/TopViewDesc"
                     android:text="向右滑  ---+--- 拉出  ---+---  弹簧" />
             </LinearLayout>
         </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
@@ -321,41 +156,14 @@
             app:bga_sil_bottomMode="layDown"
             app:bga_sil_swipeDirection="right">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#FFFF0000"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp">
+            <ImageView style="@style/BottomViewDelete" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/delete" />
-            </LinearLayout>
+            <LinearLayout style="@style/TopViewRoot">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:src="@mipmap/avator" />
+                <ImageView style="@style/TopViewAvatar" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    style="@style/TopViewDesc"
                     android:text="向右滑  ---+--- 遮罩" />
             </LinearLayout>
         </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
@@ -365,44 +173,50 @@
             app:bga_sil_bottomMode="pullOut"
             app:bga_sil_swipeDirection="right">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#FFFF0000"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="5dp">
+            <ImageView style="@style/BottomViewDelete" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/delete" />
-            </LinearLayout>
+            <LinearLayout style="@style/TopViewRoot">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:src="@mipmap/avator" />
+                <ImageView style="@style/TopViewAvatar" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
+                    style="@style/TopViewDesc"
                     android:text="向右滑  ---+--- 拉出" />
             </LinearLayout>
         </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
 
+        <cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout
+            style="@style/SwipeItemSIL"
+            app:bga_sil_bottomMode="layDown"
+            app:bga_sil_swipeDirection="left">
+
+            <ImageView style="@style/BottomViewDelete" />
+
+            <LinearLayout style="@style/TopViewRoot">
+
+                <ImageView style="@style/TopViewAvatar" />
+
+                <TextView
+                    style="@style/TopViewDesc"
+                    android:text="向左滑  ---+--- 遮罩" />
+            </LinearLayout>
+        </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
+
+        <cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout
+            style="@style/SwipeItemSIL"
+            app:bga_sil_bottomMode="pullOut"
+            app:bga_sil_swipeDirection="left">
+
+            <ImageView style="@style/BottomViewDelete" />
+
+            <LinearLayout style="@style/TopViewRoot">
+
+                <ImageView style="@style/TopViewAvatar" />
+
+                <TextView
+                    style="@style/TopViewDesc"
+                    android:text="向左滑  ---+--- 拉出" />
+            </LinearLayout>
+        </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
     </LinearLayout>
 </ScrollView>

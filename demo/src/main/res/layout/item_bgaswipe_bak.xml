@@ -2,28 +2,24 @@
 <cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sil_item_bgaswipe_root"
-    style="@style/SwipeItemSIL"
-    android:background="#38D369"
+    style="@style/MatchWrap"
+    android:background="@drawable/selector_item"
     app:bga_sil_bottomMode="pullOut"
     app:bga_sil_springDistance="20dp"
     app:bga_sil_swipeDirection="left">
 
     <LinearLayout
         style="@style/WrapMatch.Horizontal"
-        android:layout_margin="5dp"
-        android:background="#ffaa55"
-        android:padding="5dp">
+        android:background="@android:color/white">
 
         <EditText
             android:id="@+id/et_item_bgaswipe_title"
             android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp" />
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/tv_item_bgaswipe_delete"
             style="@style/WrapMatch"
-            android:layout_margin="5dp"
             android:background="@drawable/selector_btn_red"
             android:clickable="true"
             android:gravity="center"
@@ -34,19 +30,14 @@
             android:textSize="20sp" />
     </LinearLayout>
 
-    <RelativeLayout style="@style/TopViewRoot">
-
-        <ImageView
-            android:id="@+id/iv_item_bgaswipe_avatar"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@mipmap/avator" />
+    <LinearLayout
+        style="@style/MatchWrap.Vertical"
+        android:background="@drawable/selector_item"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/tv_item_bgaswipe_title"
             style="@style/MatchWrap"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/iv_item_bgaswipe_avatar"
             android:text="标题"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
@@ -54,13 +45,10 @@
         <TextView
             android:id="@+id/tv_item_bgaswipe_detail"
             style="@style/MatchWrap"
-            android:layout_below="@id/tv_item_bgaswipe_title"
-            android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/iv_item_bgaswipe_avatar"
             android:text="详细内容"
             android:textColor="@android:color/darker_gray"
             android:textSize="14sp" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout>
