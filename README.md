@@ -1,6 +1,9 @@
 :running:BGASwipeItemLayout-Android:running:
 ============
 
+[![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.bingoogolapple/bga-swipeitemlayout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.bingoogolapple/bga-swipeitemlayout)
+
 类似iOS带弹簧效果的左右滑动控件，可作为AbsListView和RecyclerView的item。支持给BGASwipeItemLayout和其子控件设置margin和padding属性
 
 ### 效果图
@@ -8,10 +11,11 @@
 ![Image of ListViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/2-listview.gif)
 ![Image of RecyclerViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/3-recyclerview.gif)
 
-### Gradle依赖[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.bingoogolapple/bga-refreshlayout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.bingoogolapple/bga-refreshlayout)
+### Gradle依赖
 
 ```groovy
 dependencies {
+    compile 'com.android.support:support-v4:latestVersion'
     compile 'cn.bingoogolapple:bga-swipeitemlayout:latestVersion@aar'
 }
 ```
