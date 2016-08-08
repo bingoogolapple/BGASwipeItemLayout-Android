@@ -7,9 +7,9 @@
 类似iOS带弹簧效果的左右滑动控件，可作为AbsListView和RecyclerView的item。支持给BGASwipeItemLayout和其子控件设置margin和padding属性
 
 ### 效果图
-![Image of 测试各种事件](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/1-event.gif)
-![Image of ListViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/2-listview.gif)
-![Image of RecyclerViewDemo](https://raw.githubusercontent.com/bingoogolapple/BGASwipeItemLayout-Android/master/screenshots/3-recyclerview.gif)
+![1-event](https://cloud.githubusercontent.com/assets/8949716/17476589/5a35c400-5d93-11e6-9de9-fbf6153dc5f3.gif)
+![2-listview](https://cloud.githubusercontent.com/assets/8949716/17476591/5aad359e-5d93-11e6-9a1c-f96b3e72ce30.gif)
+![3-recyclerview](https://cloud.githubusercontent.com/assets/8949716/17476592/5b5bcb54-5d93-11e6-8a81-34b114c32ca1.gif)
 
 ### Gradle依赖
 
