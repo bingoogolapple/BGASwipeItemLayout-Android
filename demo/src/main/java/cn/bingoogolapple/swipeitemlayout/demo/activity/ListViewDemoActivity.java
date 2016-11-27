@@ -25,7 +25,7 @@ import cn.bingoogolapple.swipeitemlayout.demo.model.NormalModel;
  */
 public class ListViewDemoActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, BGAOnItemChildClickListener, BGAOnItemChildLongClickListener {
     private static final String TAG = ListViewDemoActivity.class.getSimpleName();
-    private List<NormalModel> mDatas;
+    private List<NormalModel> mData;
     private ListView mDataLv;
     private AdapterViewAdapter mAdapter;
 
@@ -59,8 +59,8 @@ public class ListViewDemoActivity extends AppCompatActivity implements AdapterVi
             }
         });
 
-        mDatas = DataEngine.loadNormalModelDatas();
-        mAdapter.setDatas(mDatas);
+        mData = DataEngine.loadNormalModelDatas();
+        mAdapter.setData(mData);
         mDataLv.setAdapter(mAdapter);
     }
 

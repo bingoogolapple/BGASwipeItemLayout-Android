@@ -27,7 +27,7 @@ public class RecyclerViewAdapter extends BGARecyclerViewAdapter<NormalModel> {
     }
 
     @Override
-    public void setItemChildListener(BGAViewHolderHelper viewHolderHelper) {
+    public void setItemChildListener(BGAViewHolderHelper viewHolderHelper, int viewType) {
         BGASwipeItemLayout swipeItemLayout = viewHolderHelper.getView(R.id.sil_item_bgaswipe_root);
         swipeItemLayout.setDelegate(new BGASwipeItemLayout.BGASwipeItemLayoutDelegate() {
             @Override

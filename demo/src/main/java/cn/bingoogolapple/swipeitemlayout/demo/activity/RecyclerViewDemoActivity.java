@@ -28,7 +28,7 @@ import cn.bingoogolapple.swipeitemlayout.demo.widget.Divider;
 public class RecyclerViewDemoActivity extends AppCompatActivity implements BGAOnRVItemClickListener, BGAOnRVItemLongClickListener, BGAOnItemChildClickListener, BGAOnItemChildLongClickListener {
     private static final String TAG = RecyclerViewDemoActivity.class.getSimpleName();
     private RecyclerViewAdapter mAdapter;
-    private List<NormalModel> mDatas;
+    private List<NormalModel> mData;
     private RecyclerView mDataRv;
 
     @Override
@@ -62,8 +62,8 @@ public class RecyclerViewDemoActivity extends AppCompatActivity implements BGAOn
             }
         });
 
-        mDatas = DataEngine.loadNormalModelDatas();
-        mAdapter.setDatas(mDatas);
+        mData = DataEngine.loadNormalModelDatas();
+        mAdapter.setData(mData);
         mDataRv.setAdapter(mAdapter);
     }
 
