@@ -15,20 +15,14 @@ public class SwipeItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipeitem);
-        mTestSil = (BGASwipeItemLayout) findViewById(R.id.sil_swipeitem_test);
-        findViewById(R.id.iv_swipeitem_avator).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(SwipeItemActivity.this, "长按了头像", Toast.LENGTH_SHORT).show();
-                return true;
-            }
+        mTestSil = findViewById(R.id.sil_swipeitem_test);
+        findViewById(R.id.iv_swipeitem_avator).setOnLongClickListener(v -> {
+            Toast.makeText(SwipeItemActivity.this, "长按了头像", Toast.LENGTH_SHORT).show();
+            return true;
         });
-        findViewById(R.id.iv_swipeitem_delete).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Toast.makeText(SwipeItemActivity.this, "长按了删除", Toast.LENGTH_SHORT).show();
-                return true;
-            }
+        findViewById(R.id.iv_swipeitem_delete).setOnLongClickListener(v -> {
+            Toast.makeText(SwipeItemActivity.this, "长按了删除", Toast.LENGTH_SHORT).show();
+            return true;
         });
 
         mTestSil.setDelegate(new BGASwipeItemLayout.BGASwipeItemLayoutDelegate() {
@@ -51,28 +45,21 @@ public class SwipeItemActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.iv_swipeitem_avator:
-                Toast.makeText(this, "点击了头像", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.iv_swipeitem_delete:
-                Toast.makeText(this, "点击了删除", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.btn_swipeitem_open:
-                mTestSil.open();
-                break;
-            case R.id.btn_swipeitem_close:
-                mTestSil.close();
-                break;
-            case R.id.btn_swipeitem_openwithanim:
-                mTestSil.openWithAnim();
-                break;
-            case R.id.btn_swipeitem_closewithanim:
-                mTestSil.closeWithAnim();
-                break;
-            case R.id.btn_swipeitem_status:
-                showStatus();
-                break;
+        int id = view.getId();
+        if (id == R.id.iv_swipeitem_avator) {
+            Toast.makeText(this, "点击了头像", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.iv_swipeitem_delete) {
+            Toast.makeText(this, "点击了删除", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.btn_swipeitem_open) {
+            mTestSil.open();
+        } else if (id == R.id.btn_swipeitem_close) {
+            mTestSil.close();
+        } else if (id == R.id.btn_swipeitem_openwithanim) {
+            mTestSil.openWithAnim();
+        } else if (id == R.id.btn_swipeitem_closewithanim) {
+            mTestSil.closeWithAnim();
+        } else if (id == R.id.btn_swipeitem_status) {
+            showStatus();
         }
     }
 

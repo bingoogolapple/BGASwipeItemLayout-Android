@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace = 'cn.bingoogolapple.swipeitemlayout'
     compileSdkVersion ANDROID_BUILD_SDK_VERSION as int
-    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdkVersion ANDROID_BUILD_MIN_SDK_VERSION as int
@@ -11,8 +11,18 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:25.0.1'
+    // support-v4 仅内部使用（公开 API 未暴露其类型），用 implementation 避免把它强塞进使用者的编译 classpath / POM compile 作用域
+    // 版本锁定 27.1.1，【不能升到 28.0.0】：support 28.0.0 的 animated-vector-drawable 与 support-vector-drawable 两个 AAR
+    // 各自 manifest 都声明了 namespace="android.support.graphics.drawable"，新版 AGP(7.0+) 强制 namespace 全局唯一，
+    // 会直接 manifest merger 失败，且无配置可绕过。27.1.1 是 support 库在 AGP 9.x 上能正常构建的最高可用版本。
+    implementation 'com.android.support:support-v4:27.1.1'
 }
 
-// gradle uploadArchives
-//apply from: 'https://raw.githubusercontent.com/bingoogolapple/PublishAar/master/central-publish.gradle'
+// 发布脚本（加 -PpublishAar 才启用；凭证 mavenCentralUsername/mavenCentralPassword、githubUsername/githubToken 见 ~/.gradle/gradle.properties）。
+// 简写发布命令（封装了 clean + build + 发布；完整任务名与参数分层见 publish-aar.gradle 头部注释）：
+//   Maven Central 正式版(手动 Release) : ./gradlew publishAar -PpublishAar
+//   Maven Central 正式版(自动 Release) : ./gradlew publishAarRelease -PpublishAar
+//   Maven Central 快照版              : ./gradlew publishAar -PpublishAar   (VERSION_NAME 以 -SNAPSHOT 结尾，上传即生效)
+//   GitHub Packages (正式/快照同命令)  : ./gradlew publishAarGpr -PpublishAar
+//   本地调试 Maven Local              : ./gradlew publishToMavenLocal -PpublishAar
+apply from: 'https://raw.githubusercontent.com/bingoogolapple/PublishAar/master/publish-aar.gradle'

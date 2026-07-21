@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+    namespace = 'cn.bingoogolapple.swipeitemlayout.demo'
     compileSdkVersion ANDROID_BUILD_SDK_VERSION as int
-    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
 
     defaultConfig {
         minSdkVersion ANDROID_BUILD_MIN_SDK_VERSION as int
@@ -14,15 +14,19 @@ android {
 
 dependencies {
     // -------------------- 以下两个库是必须依赖的 ----------------------------
-    compile 'com.android.support:support-v4:25.0.1'
-    compile 'cn.bingoogolapple:bga-swipeitemlayout:1.0.4@aar'
+    // 版本锁定 27.1.1，【不能升到 28.0.0】：support 28.0.0 的 animated-vector-drawable 与 support-vector-drawable 两个 AAR
+    // 各自 manifest 都声明了 namespace="android.support.graphics.drawable"，新版 AGP(7.0+) 强制 namespace 全局唯一，
+    // 会直接 manifest merger 失败，且无配置可绕过。27.1.1 是 support 库在 AGP 9.x 上能正常构建的最高可用版本。
+    implementation 'com.android.support:support-v4:27.1.1'
+//    implementation "cn.bingoogolapple:bga-swipeitemlayout:${VERSION_NAME}@aar"
     // -------------------- 以上两个库是必须依赖的 ----------------------------
 
 
 
     // 以下几个库是演示案例所使用到的
-//    compile project(':library')
-    compile 'com.android.support:appcompat-v7:25.0.1'
-    compile 'com.android.support:recyclerview-v7:25.0.1'
-    compile 'cn.bingoogolapple:bga-adapter:1.1.5@aar'
+    implementation project(':library')
+    // 与 library 保持一致，appcompat-v7 / recyclerview-v7 同样锁定 27.1.1（不能升 28.0.0，原因同上）
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'cn.bingoogolapple:bga-adapter:1.2.0@aar'
 }
