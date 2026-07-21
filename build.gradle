@@ -2,10 +2,12 @@
 
 buildscript {
     repositories {
-        jcenter()
+        google()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:9.2.1'
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.37.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -14,6 +16,31 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        // 本地调试：优先解析 publishReleasePublicationToMavenLocal 发布的包；
+        // 若要强制走远程包，临时注释掉本行再构建即可（常态保留便于本地联调，不影响已发布的远程包解析）。
+        // mavenLocal()
+
+        // GitHub Packages（可选）：有 githubUsername+githubToken 才挂；公开包也需 read:packages 的 classic PAT 鉴权，无凭据则不挂以免 401 中断解析。包坐标同 Maven Central，仓库地址 OWNER 须小写。
+        // 如要强制走 mavenCentral 包，临时注释掉下面行再构建即可（常态保留便于本地联调，不影响已发布的远程包解析）。
+        // def ghUser = project.findProperty('githubUsername')
+        // def ghToken = project.findProperty('githubToken')
+        // if (ghUser && ghToken) {
+        //     maven {
+        //         name = 'GitHubPackages'
+        //         url = uri("https://maven.pkg.github.com/bingoogolapple/BGASwipeItemLayout-Android")
+        //         credentials {
+        //             username = ghUser
+        //             password = ghToken
+        //         }
+        //     }
+        // }
+
+        // SNAPSHOT 仓库（Maven Central 快照落点，与正式仓库 repo1.maven.org 不同）：
+        // 仅当 VERSION_NAME 以 -SNAPSHOT 结尾、且命名空间已开启 Enable SNAPSHOTs 时才有内容。
+        // 常态保留便于拉取快照包；若只想走正式版，临时注释掉本段即可。
+        // maven { url = uri("https://central.sonatype.com/repository/maven-snapshots/") }
+
+        google()
+        mavenCentral()
     }
 }

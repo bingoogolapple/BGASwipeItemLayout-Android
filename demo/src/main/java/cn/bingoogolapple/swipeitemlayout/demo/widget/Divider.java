@@ -4,16 +4,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import cn.bingoogolapple.swipeitemlayout.demo.R;
 
 public class Divider extends RecyclerView.ItemDecoration {
-    private Drawable mDividerDrawable;
+    private final Drawable mDividerDrawable;
 
     public Divider(Context context) {
-        mDividerDrawable = context.getResources().getDrawable(R.mipmap.list_divider);
+        mDividerDrawable = ContextCompat.getDrawable(context, R.mipmap.list_divider);
     }
 
     // 如果等于分割线的宽度或高度的话可以不用重写该方法

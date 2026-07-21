@@ -2,14 +2,14 @@
 ============
 
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cn.bingoogolapple/bga-swipeitemlayout/badge.svg)](https://maven-badges.herokuapp.com/maven-central/cn.bingoogolapple/bga-swipeitemlayout)
+[![Maven Central](https://img.shields.io/maven-central/v/cn.bingoogolapple/bga-swipeitemlayout)](https://central.sonatype.com/artifact/cn.bingoogolapple/bga-swipeitemlayout)
 
 类似iOS带弹簧效果的左右滑动控件，可作为AbsListView和RecyclerView的item。支持给BGASwipeItemLayout和其子控件设置margin和padding属性
 
 ### 效果图
-![1-event](https://cloud.githubusercontent.com/assets/8949716/17476589/5a35c400-5d93-11e6-9de9-fbf6153dc5f3.gif)
-![2-listview](https://cloud.githubusercontent.com/assets/8949716/17476591/5aad359e-5d93-11e6-9a1c-f96b3e72ce30.gif)
-![3-recyclerview](https://cloud.githubusercontent.com/assets/8949716/17476592/5b5bcb54-5d93-11e6-8a81-34b114c32ca1.gif)
+![1-event](screenshots/1-event.gif)
+![2-listview](screenshots/2-listview.gif)
+![3-recyclerview](screenshots/3-recyclerview.gif)
 
 ### Gradle依赖
 

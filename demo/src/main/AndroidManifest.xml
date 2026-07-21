@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.bingoogolapple.swipeitemlayout.demo">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -8,7 +7,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.MainActivity"
-            android:label="@string/app_name">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,12 +16,15 @@
         </activity>
         <activity
             android:name=".activity.SwipeItemActivity"
+            android:exported="false"
             android:label="测试拖动和事件传递" />
         <activity
             android:name=".activity.ListViewDemoActivity"
+            android:exported="false"
             android:label="ListView示例" />
         <activity
             android:name=".activity.RecyclerViewDemoActivity"
+            android:exported="false"
             android:label="RecyclerView示例" />
     </application>
 
