@@ -4,23 +4,24 @@
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Maven Central](https://img.shields.io/maven-central/v/cn.bingoogolapple/bga-swipeitemlayout)](https://central.sonatype.com/artifact/cn.bingoogolapple/bga-swipeitemlayout)
 
-类似iOS带弹簧效果的左右滑动控件，可作为AbsListView和RecyclerView的item。支持给BGASwipeItemLayout和其子控件设置margin和padding属性
+类似 iOS 带弹簧效果的左右滑动控件，可作为 AbsListView 和 RecyclerView 的 item。支持给 BGASwipeItemLayout 和其子控件设置 margin 和 padding 属性
 
 ### 效果图
-![1-event](screenshots/1-event.gif)
-![2-listview](screenshots/2-listview.gif)
-![3-recyclerview](screenshots/3-recyclerview.gif)
+![1-event](images/1-event.gif)
+![2-listview](images/2-listview.gif)
+![3-recyclerview](images/3-recyclerview.gif)
 
-### Gradle依赖
+### Gradle 依赖
+
+> 该库已迁移到 AndroidX（minSdk 21），使用方工程需开启 AndroidX（`android.useAndroidX=true`）
 
 ```groovy
 dependencies {
-    compile 'com.android.support:support-v4:latestVersion'
-    compile 'cn.bingoogolapple:bga-swipeitemlayout:latestVersion@aar'
+    implementation 'cn.bingoogolapple:bga-swipeitemlayout:latestVersion'
 }
 ```
 
-### BGASwipeItemLayout方法说明
+### BGASwipeItemLayout 方法说明
 
 ```java
 /**
@@ -39,7 +40,7 @@ public void closeWithAnim()
 public void open()
 
 /**
- * 直接关闭。如果在AbsListView中删除已经打开的item时，请用该方法关闭item，否则重用item时有问题。RecyclerView中可以用该方法，也可以用closeWithAnim
+ * 直接关闭。如果在 AbsListView 中删除已经打开的 item 时，请用该方法关闭 item，否则重用 item 时有问题。RecyclerView 中可以用该方法，也可以用 closeWithAnim
  */
 public void close()
 
@@ -79,7 +80,7 @@ public View getBottomView()
 public void setSwipeAble(boolean swipeAble)
 ```
 
-### BGASwipeItemLayoutDelegate接口说明
+### BGASwipeItemLayoutDelegate 接口说明
 
 ```java
 /**
@@ -108,8 +109,8 @@ void onBGASwipeItemLayoutStartOpen(BGASwipeItemLayout swipeItemLayout);
 
 属性名 | 说明 | 默认值
 :----------- | :----------- | :-----------
-bga_sil_swipeDirection         | 往左滑还是往右滑为打开状态(left或right)        | left
-bga_sil_bottomMode         | 底部视图展现方式(layDown或pullOut)        | pullOut
+bga_sil_swipeDirection         | 往左滑还是往右滑为打开状态(left 或 right)        | left
+bga_sil_bottomMode         | 底部视图展现方式(layDown 或 pullOut)        | pullOut
 bga_sil_springDistance         | 弹簧距离        | 0dp
 bga_sil_swipeAble         | 是否可左右滑动        | true
 
