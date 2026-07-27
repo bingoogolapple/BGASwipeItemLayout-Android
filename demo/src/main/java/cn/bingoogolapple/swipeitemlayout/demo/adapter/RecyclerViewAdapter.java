@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
-import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
+import cn.bingoogolapple.baseadapter.BGARecyclerViewAdapter;
+import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 import cn.bingoogolapple.swipeitemlayout.BGASwipeItemLayout;
 import cn.bingoogolapple.swipeitemlayout.demo.R;
 import cn.bingoogolapple.swipeitemlayout.demo.model.NormalModel;

@@ -10,10 +10,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildClickListener;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnItemChildLongClickListener;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
-import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemLongClickListener;
+import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
+import cn.bingoogolapple.baseadapter.BGAOnItemChildLongClickListener;
+import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener;
+import cn.bingoogolapple.baseadapter.BGAOnRVItemLongClickListener;
 import cn.bingoogolapple.swipeitemlayout.demo.R;
 import cn.bingoogolapple.swipeitemlayout.demo.adapter.RecyclerViewAdapter;
 import cn.bingoogolapple.swipeitemlayout.demo.engine.DataEngine;
